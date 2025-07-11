@@ -37,22 +37,18 @@ const CONFIG = {
     // Social Media Platforms
     SOCIAL_PLATFORMS: {
         'X Account': {
-            icon: 'fab fa-x-twitter',
             baseUrl: 'https://x.com/',
-            color: '#000000'
+            color: '#1DA1F2'
         },
         'Instagram Account': {
-            icon: 'fab fa-instagram',
             baseUrl: 'https://instagram.com/',
             color: '#E4405F'
         },
         'Linkedin Account': {
-            icon: 'fab fa-linkedin',
             baseUrl: 'https://linkedin.com/in/',
             color: '#0077B5'
         },
         'Facebook Account': {
-            icon: 'fab fa-facebook',
             baseUrl: 'https://facebook.com/',
             color: '#1877F2'
         }

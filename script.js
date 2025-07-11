@@ -420,6 +420,11 @@ class SyriaDevelopmentNetwork {
             this.elements.initiativesGrid.appendChild(card);
         });
         
+        // Initialize Lucide icons in the new cards
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+        
         // Show/hide load more button
         this.elements.loadMoreContainer.style.display = 
             endIndex < this.filteredInitiatives.length ? 'block' : 'none';
@@ -428,54 +433,54 @@ class SyriaDevelopmentNetwork {
     // Create initiative card
     createInitiativeCard(initiative) {
         const card = document.createElement('div');
-        card.className = 'initiative-card';
+        card.className = 'rounded-lg border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow';
         
         const location = this.formatLocation(initiative);
         const socialLinks = this.createSocialLinks(initiative);
         
         card.innerHTML = `
-            <div class="card-header">
-                <h3 class="card-title">${this.escapeHtml(initiative[CONFIG.COLUMNS.INITIATIVE_NAME])}</h3>
+            <div class="p-6 border-b">
+                <h3 class="text-xl font-semibold text-primary mb-2">${this.escapeHtml(initiative[CONFIG.COLUMNS.INITIATIVE_NAME])}</h3>
                 ${initiative[CONFIG.COLUMNS.CATEGORY] ? 
-                    `<span class="card-category">${this.escapeHtml(initiative[CONFIG.COLUMNS.CATEGORY])}</span>` : ''}
+                    `<span class="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">${this.escapeHtml(initiative[CONFIG.COLUMNS.CATEGORY])}</span>` : ''}
             </div>
-            <div class="card-body">
+            <div class="p-6 space-y-4">
                 ${initiative[CONFIG.COLUMNS.DESCRIPTION] ? 
-                    `<p class="card-description">${this.escapeHtml(initiative[CONFIG.COLUMNS.DESCRIPTION])}</p>` : ''}
+                    `<p class="text-muted-foreground leading-relaxed">${this.escapeHtml(initiative[CONFIG.COLUMNS.DESCRIPTION])}</p>` : ''}
                 
-                ${location ? `<div class="card-location">
-                    <i class="fas fa-map-marker-alt"></i>
+                ${location ? `<div class="flex items-center text-sm text-muted-foreground">
+                    <i data-lucide="map-pin" class="mr-2 h-4 w-4 text-primary"></i>
                     <span>${location}</span>
                 </div>` : ''}
                 
-                <div class="card-contact">
+                <div class="space-y-2">
                     ${initiative[CONFIG.COLUMNS.WEBSITE] ? `
-                        <div class="contact-item">
-                            <i class="fas fa-globe"></i>
-                            <a href="${this.escapeHtml(initiative[CONFIG.COLUMNS.WEBSITE])}" target="_blank" rel="noopener">
+                        <div class="flex items-center text-sm">
+                            <i data-lucide="globe" class="mr-2 h-4 w-4 text-primary"></i>
+                            <a href="${this.escapeHtml(initiative[CONFIG.COLUMNS.WEBSITE])}" target="_blank" rel="noopener" class="text-primary hover:underline">
                                 Visit Website
                             </a>
                         </div>
                     ` : ''}
                     
                     ${initiative[CONFIG.COLUMNS.PHONE] ? `
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:${this.escapeHtml(initiative[CONFIG.COLUMNS.PHONE])}">
+                        <div class="flex items-center text-sm">
+                            <i data-lucide="phone" class="mr-2 h-4 w-4 text-primary"></i>
+                            <a href="tel:${this.escapeHtml(initiative[CONFIG.COLUMNS.PHONE])}" class="text-primary hover:underline">
                                 ${this.escapeHtml(initiative[CONFIG.COLUMNS.PHONE])}
                             </a>
                         </div>
                     ` : ''}
                     
                     ${initiative[CONFIG.COLUMNS.ADDRESS] ? `
-                        <div class="contact-item">
-                            <i class="fas fa-map-pin"></i>
-                            <span>${this.escapeHtml(initiative[CONFIG.COLUMNS.ADDRESS])}</span>
+                        <div class="flex items-center text-sm">
+                            <i data-lucide="map-pin" class="mr-2 h-4 w-4 text-primary"></i>
+                            <span class="text-muted-foreground">${this.escapeHtml(initiative[CONFIG.COLUMNS.ADDRESS])}</span>
                         </div>
                     ` : ''}
                 </div>
                 
-                ${socialLinks ? `<div class="card-social">${socialLinks}</div>` : ''}
+                ${socialLinks ? `<div class="flex space-x-2 pt-4 border-t">${socialLinks}</div>` : ''}
             </div>
         `;
         
@@ -500,16 +505,29 @@ class SyriaDevelopmentNetwork {
             const account = initiative[column];
             if (account) {
                 const url = this.formatSocialUrl(platform.baseUrl, account);
+                const iconName = this.getLucideIconName(column);
                 links.push(`
-                    <a href="${url}" target="_blank" rel="noopener" class="social-link" 
+                    <a href="${url}" target="_blank" rel="noopener" 
+                       class="inline-flex items-center justify-center rounded-full w-8 h-8 bg-muted hover:bg-primary hover:text-primary-foreground transition-colors" 
                        title="${column.replace(' Account', '')}">
-                        <i class="${platform.icon}"></i>
+                        <i data-lucide="${iconName}" class="h-4 w-4"></i>
                     </a>
                 `);
             }
         });
         
         return links.join('');
+    }
+    
+    // Get Lucide icon name for social platforms
+    getLucideIconName(column) {
+        const iconMap = {
+            'X Account': 'twitter',
+            'Instagram Account': 'instagram',
+            'Linkedin Account': 'linkedin',
+            'Facebook Account': 'facebook'
+        };
+        return iconMap[column] || 'external-link';
     }
     
     // Format social media URL
