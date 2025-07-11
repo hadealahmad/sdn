@@ -7,7 +7,7 @@ const CONFIG = {
         
         // CSV Export URL (publicly accessible)
         // For testing, using local CSV file. Replace with your Google Sheets CSV URL when ready
-        CSV_URL: './test-data.csv',
+        CSV_URL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQT_ys6UuVzp9td2IXEGOdGg9Qr-I0UOwmjMWpJVDkHu7RZdZ74sCl28GeVo90JLedchKfAxU15EvAF/pub?output=csv',
         
         // Cache duration in milliseconds (5 minutes)
         CACHE_DURATION: 5 * 60 * 1000,
