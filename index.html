@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Syria Development Network - Discover and browse development initiatives across Syria">
+    <meta name="keywords" content="Syria, development, initiatives, projects, network">
+    <meta name="author" content="Syria Development Network">
+    <title>Syria Development Network - Initiative Hub</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Syria Development Network</h1>
+                    <p>Connecting Development Initiatives Across Syria</p>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="#initiatives">Initiatives</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Discover Syrian Development Initiatives</h2>
+                    <p>Browse and connect with development projects, organizations, and initiatives working across Syria</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search and Filter Section -->
+        <section class="search-section" id="initiatives">
+            <div class="container">
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search initiatives by name, category, or location...">
+                        <button id="clearSearch" class="clear-btn" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="filter-container">
+                        <div class="filter-group">
+                            <label for="categoryFilter">Category:</label>
+                            <select id="categoryFilter">
+                                <option value="">All Categories</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="countryFilter">Country:</label>
+                            <select id="countryFilter">
+                                <option value="">All Countries</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="cityFilter">City:</label>
+                            <select id="cityFilter">
+                                <option value="">All Cities</option>
+                            </select>
+                        </div>
+                        
+                        <button id="clearFilters" class="clear-filters-btn">
+                            <i class="fas fa-times"></i> Clear Filters
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="results-info">
+                    <span id="resultsCount">Loading initiatives...</span>
+                    <div class="sort-container">
+                        <label for="sortSelect">Sort by:</label>
+                        <select id="sortSelect">
+                            <option value="name">Name (A-Z)</option>
+                            <option value="name-desc">Name (Z-A)</option>
+                            <option value="category">Category</option>
+                            <option value="country">Country</option>
+                            <option value="city">City</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Initiatives Grid -->
+        <section class="initiatives-section">
+            <div class="container">
+                <div id="loadingSpinner" class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Loading initiatives...</p>
+                </div>
+                
+                <div id="errorMessage" class="error-message" style="display: none;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Failed to load initiatives. Please try again later.</p>
+                    <button id="retryButton" class="retry-btn">Retry</button>
+                </div>
+                
+                <div id="noResults" class="no-results" style="display: none;">
+                    <i class="fas fa-search"></i>
+                    <h3>No initiatives found</h3>
+                    <p>Try adjusting your search terms or filters.</p>
+                </div>
+                
+                <div id="initiativesGrid" class="initiatives-grid">
+                    <!-- Initiative cards will be dynamically inserted here -->
+                </div>
+                
+                <div id="loadMoreContainer" class="load-more-container" style="display: none;">
+                    <button id="loadMoreBtn" class="load-more-btn">
+                        <i class="fas fa-plus"></i> Load More
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <h2>About Syria Development Network</h2>
+                <p>The Syria Development Network serves as a comprehensive hub for discovering and connecting with development initiatives across Syria. Our platform aggregates information about various projects, organizations, and initiatives working to support development and reconstruction efforts throughout the country.</p>
+                <p>Whether you're looking to collaborate, volunteer, or simply learn about ongoing development work, this platform provides easy access to contact information and project details.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Syria Development Network</h3>
+                    <p>Connecting development initiatives across Syria</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>For questions or to add your initiative to this platform, please contact us.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Data Source</h4>
+                    <p>Initiative data is sourced from our comprehensive database and is regularly updated.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Syria Development Network. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" style="display: none;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Configuration -->
+    <script src="config.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html> 
