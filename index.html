@@ -1,347 +1,454 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Syria Development Network - Discover and browse development initiatives across Syria">
-    <meta name="keywords" content="Syria, development, initiatives, projects, network">
-    <meta name="author" content="Syria Development Network">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Syria Development Network - Discover and browse development initiatives across Syria"
+    />
+    <meta
+      name="keywords"
+      content="Syria, development, initiatives, projects, network"
+    />
+    <meta name="author" content="Syria Development Network" />
     <title>Syria Development Network - Initiative Hub</title>
-    
+
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Lucide Icons (shadcn/ui compatible) -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Tailwind Config -->
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        border: "hsl(var(--border))",
-                        input: "hsl(var(--input))",
-                        ring: "hsl(var(--ring))",
-                        background: "hsl(var(--background))",
-                        foreground: "hsl(var(--foreground))",
-                        primary: {
-                            DEFAULT: "hsl(var(--primary))",
-                            foreground: "hsl(var(--primary-foreground))",
-                        },
-                        secondary: {
-                            DEFAULT: "hsl(var(--secondary))",
-                            foreground: "hsl(var(--secondary-foreground))",
-                        },
-                        destructive: {
-                            DEFAULT: "hsl(var(--destructive))",
-                            foreground: "hsl(var(--destructive-foreground))",
-                        },
-                        muted: {
-                            DEFAULT: "hsl(var(--muted))",
-                            foreground: "hsl(var(--muted-foreground))",
-                        },
-                        accent: {
-                            DEFAULT: "hsl(var(--accent))",
-                            foreground: "hsl(var(--accent-foreground))",
-                        },
-                        popover: {
-                            DEFAULT: "hsl(var(--popover))",
-                            foreground: "hsl(var(--popover-foreground))",
-                        },
-                        card: {
-                            DEFAULT: "hsl(var(--card))",
-                            foreground: "hsl(var(--card-foreground))",
-                        },
-                    },
-                    borderRadius: {
-                        lg: "var(--radius)",
-                        md: "calc(var(--radius) - 2px)",
-                        sm: "calc(var(--radius) - 4px)",
-                    },
-                },
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["IBM Plex Sans Arabic", "sans-serif"],
             },
-        }
+            colors: {
+              border: "hsl(var(--border))",
+              input: "hsl(var(--input))",
+              ring: "hsl(var(--ring))",
+              background: "hsl(var(--background))",
+              foreground: "hsl(var(--foreground))",
+              primary: {
+                DEFAULT: "hsl(var(--primary))",
+                foreground: "hsl(var(--primary-foreground))",
+              },
+              secondary: {
+                DEFAULT: "hsl(var(--secondary))",
+                foreground: "hsl(var(--secondary-foreground))",
+              },
+              destructive: {
+                DEFAULT: "hsl(var(--destructive))",
+                foreground: "hsl(var(--destructive-foreground))",
+              },
+              muted: {
+                DEFAULT: "hsl(var(--muted))",
+                foreground: "hsl(var(--muted-foreground))",
+              },
+              accent: {
+                DEFAULT: "hsl(var(--accent))",
+                foreground: "hsl(var(--accent-foreground))",
+              },
+              popover: {
+                DEFAULT: "hsl(var(--popover))",
+                foreground: "hsl(var(--popover-foreground))",
+              },
+              card: {
+                DEFAULT: "hsl(var(--card))",
+                foreground: "hsl(var(--card-foreground))",
+              },
+            },
+            borderRadius: {
+              lg: "var(--radius)",
+              md: "calc(var(--radius) - 2px)",
+              sm: "calc(var(--radius) - 4px)",
+            },
+          },
+        },
+      };
     </script>
-    
-    <!-- CSS Variables for shadcn/ui theme -->
-    <style>
-        :root {
-            --background: 0 0% 100%;
-            --foreground: 222.2 84% 4.9%;
-            --card: 0 0% 100%;
-            --card-foreground: 222.2 84% 4.9%;
-            --popover: 0 0% 100%;
-            --popover-foreground: 222.2 84% 4.9%;
-            --primary: 180 100% 8%;      /* #002623 */
-            --primary-foreground: 160 100% 90%; /* light green for contrast */
-            --secondary: 168 90% 18%;    /* #054239 */
-            --secondary-foreground: 160 100% 90%;
-            --muted: 170 25% 80%;        /* #428177 (lightest green) */
-            --muted-foreground: 168 90% 18%;
-            --accent: 168 90% 18%;
-            --accent-foreground: 160 100% 90%;
-            --destructive: 0 84.2% 60.2%;
-            --destructive-foreground: 210 40% 98%;
-            --border: 168 90% 18%;
-            --input: 168 90% 18%;
-            --ring: 168 90% 18%;
-            --radius: 0.5rem;
-        }
-        
-        .dark {
-            --background: 180 100% 8%;
-            --foreground: 160 100% 90%;
-            --card: 180 100% 8%;
-            --card-foreground: 160 100% 90%;
-            --popover: 180 100% 8%;
-            --popover-foreground: 160 100% 90%;
-            --primary: 168 90% 18%;
-            --primary-foreground: 160 100% 90%;
-            --secondary: 168 90% 18%;
-            --secondary-foreground: 160 100% 90%;
-            --muted: 170 25% 80%;
-            --muted-foreground: 168 90% 18%;
-            --accent: 168 90% 18%;
-            --accent-foreground: 160 100% 90%;
-            --destructive: 0 62.8% 30.6%;
-            --destructive-foreground: 210 40% 98%;
-            --border: 168 90% 18%;
-            --input: 168 90% 18%;
-            --ring: 168 90% 18%;
-        }
-    </style>
-</head>
-<body class="min-h-screen bg-background font-sans antialiased">
+  </head>
+  <body class="min-h-screen bg-background font-sans antialiased">
     <!-- Header -->
-    <header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex h-16 items-center justify-between">
-                <div class="flex flex-col">
-                    <h1 class="text-2xl font-bold text-primary">Syria Development Network</h1>
-                    <p class="text-sm text-muted-foreground">Connecting Development Initiatives Across Syria</p>
-                </div>
-                <nav class="hidden md:flex items-center space-x-6" id="mainNav">
-                    <a href="#initiatives" class="text-sm font-medium transition-colors hover:text-primary">Initiatives</a>
-                    <a href="#about" class="text-sm font-medium transition-colors hover:text-primary">About</a>
-                    <a href="#contact" class="text-sm font-medium transition-colors hover:text-primary">Contact</a>
-                </nav>
-                <!-- Hamburger for mobile -->
-                <button id="menuToggle" class="md:hidden flex items-center justify-center p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary">
-                    <i data-lucide="menu" class="h-6 w-6"></i>
-                </button>
-            </div>
-            <!-- Mobile Nav -->
-            <nav id="mobileNav" class="md:hidden hidden flex-col space-y-2 mt-2 bg-background rounded shadow p-4">
-                <div class="flex justify-end">
-                    <button id="menuClose" class="p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary">
-                        <i data-lucide="x" class="h-6 w-6"></i>
-                    </button>
-                </div>
-                <a href="#initiatives" class="block text-base font-medium transition-colors hover:text-primary">Initiatives</a>
-                <a href="#about" class="block text-base font-medium transition-colors hover:text-primary">About</a>
-                <a href="#contact" class="block text-base font-medium transition-colors hover:text-primary">Contact</a>
-            </nav>
+    <header
+      class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+    >
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex flex-col">
+            <h1 class="text-2xl font-bold text-primary">
+              Syria Development Network
+            </h1>
+            <p class="text-sm text-muted-foreground">
+              Connecting Development Initiatives Across Syria
+            </p>
+          </div>
+          <nav class="hidden md:flex items-center space-x-6" id="mainNav">
+            <a
+              href="#initiatives"
+              class="text-sm font-medium transition-colors hover:text-primary"
+              >Initiatives</a
+            >
+            <a
+              href="#about"
+              class="text-sm font-medium transition-colors hover:text-primary"
+              >About</a
+            >
+            <a
+              href="#contact"
+              class="text-sm font-medium transition-colors hover:text-primary"
+              >Contact</a
+            >
+          </nav>
+          <!-- Hamburger for mobile -->
+          <button
+            id="menuToggle"
+            class="md:hidden flex items-center justify-center p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            <i data-lucide="menu" class="h-6 w-6"></i>
+          </button>
         </div>
+        <!-- Mobile Nav -->
+        <nav
+          id="mobileNav"
+          class="md:hidden hidden flex-col space-y-2 mt-2 bg-background rounded shadow p-4"
+        >
+          <div class="flex justify-end">
+            <button
+              id="menuClose"
+              class="p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <i data-lucide="x" class="h-6 w-6"></i>
+            </button>
+          </div>
+          <a
+            href="#initiatives"
+            class="block text-base font-medium transition-colors hover:text-primary"
+            >Initiatives</a
+          >
+          <a
+            href="#about"
+            class="block text-base font-medium transition-colors hover:text-primary"
+            >About</a
+          >
+          <a
+            href="#contact"
+            class="block text-base font-medium transition-colors hover:text-primary"
+            >Contact</a
+          >
+        </nav>
+      </div>
     </header>
 
     <!-- Main Content -->
     <main class="flex-1">
-        <!-- Hero Section -->
-        <section class="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground py-16 md:py-24">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <div class="max-w-3xl mx-auto">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Discover Syrian Development Initiatives</h2>
-                    <p class="text-xl text-primary-foreground/90">Browse and connect with development projects, organizations, and initiatives working across Syria</p>
-                </div>
-            </div>
-        </section>
+      <!-- Hero Section -->
+      <section
+        class="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground py-16 md:py-24"
+      >
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+              Discover Syrian Development Initiatives
+            </h2>
+            <p class="text-xl text-primary-foreground/90">
+              Browse and connect with development projects, organizations, and
+              initiatives working across Syria
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <!-- Search and Filter Section -->
-        <section class="bg-background border-b py-8" id="initiatives">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="space-y-6">
-                    <!-- Search Box -->
-                    <div class="relative max-w-2xl mx-auto">
-                        <div class="relative">
-                            <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground"></i>
-                            <input 
-                                type="text" 
-                                id="searchInput" 
-                                placeholder="Search initiatives by name, category, or location..." 
-                                class="w-full pl-10 pr-10 py-3 border border-input bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
-                            >
-                            <button id="clearSearch" class="absolute right-3 top-1/2 transform -translate-y-1/2 hidden" style="display: none;">
-                                <i data-lucide="x" class="h-4 w-4 text-muted-foreground hover:text-foreground"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Filters -->
-                    <div class="flex flex-wrap gap-4 justify-center items-end">
-                        <div class="flex flex-col space-y-2">
-                            <label for="categoryFilter" class="text-sm font-medium">Category</label>
-                            <select id="categoryFilter" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
-                                <option value="">All Categories</option>
-                            </select>
-                        </div>
-                        
-                        <div class="flex flex-col space-y-2">
-                            <label for="countryFilter" class="text-sm font-medium">Country</label>
-                            <select id="countryFilter" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
-                                <option value="">All Countries</option>
-                            </select>
-                        </div>
-                        
-                        <div class="flex flex-col space-y-2">
-                            <label for="cityFilter" class="text-sm font-medium">City</label>
-                            <select id="cityFilter" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
-                                <option value="">All Cities</option>
-                            </select>
-                        </div>
-                        
-                        <button id="clearFilters" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
-                            <i data-lucide="x" class="mr-2 h-4 w-4"></i> Clear Filters
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Results Info -->
-                <div class="flex justify-between items-center pt-6 border-t mt-6">
-                    <span id="resultsCount" class="text-sm font-medium">Loading initiatives...</span>
-                    <div class="flex items-center space-x-2">
-                        <label for="sortSelect" class="text-sm text-muted-foreground">Sort by:</label>
-                        <select id="sortSelect" class="flex h-8 rounded-md border border-input bg-background px-2 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
-                            <option value="name">Name (A-Z)</option>
-                            <option value="name-desc">Name (Z-A)</option>
-                            <option value="category">Category</option>
-                            <option value="country">Country</option>
-                            <option value="city">City</option>
-                        </select>
-                    </div>
-                </div>
+      <!-- Search and Filter Section -->
+      <section class="bg-background border-b py-8" id="initiatives">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="space-y-6">
+            <!-- Search Box -->
+            <div class="relative max-w-2xl mx-auto">
+              <div class="relative">
+                <i
+                  data-lucide="search"
+                  class="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground"
+                ></i>
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search initiatives by name, category, or location..."
+                  class="w-full pl-10 pr-10 py-3 border border-input bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
+                />
+                <button
+                  id="clearSearch"
+                  class="absolute right-3 top-1/2 transform -translate-y-1/2 hidden"
+                  style="display: none"
+                >
+                  <i
+                    data-lucide="x"
+                    class="h-4 w-4 text-muted-foreground hover:text-foreground"
+                  ></i>
+                </button>
+              </div>
             </div>
-        </section>
 
-        <!-- Initiatives Grid -->
-        <section class="py-12">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Loading Spinner -->
-                <div id="loadingSpinner" class="flex flex-col items-center justify-center py-12">
-                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                    <p class="mt-4 text-muted-foreground">Loading initiatives...</p>
-                </div>
-                
-                <!-- Error Message -->
-                <div id="errorMessage" class="flex flex-col items-center justify-center py-12" style="display: none;">
-                    <i data-lucide="alert-triangle" class="h-12 w-12 text-destructive mb-4"></i>
-                    <p class="text-center text-muted-foreground mb-4">Failed to load initiatives. Please try again later.</p>
-                    <button id="retryButton" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
-                        Retry
-                    </button>
-                </div>
-                
-                <!-- No Results -->
-                <div id="noResults" class="flex flex-col items-center justify-center py-12" style="display: none;">
-                    <i data-lucide="search" class="h-12 w-12 text-muted-foreground mb-4"></i>
-                    <h3 class="text-lg font-semibold mb-2">No initiatives found</h3>
-                    <p class="text-muted-foreground">Try adjusting your search terms or filters.</p>
-                </div>
-                
-                <!-- Initiatives Grid -->
-                <div id="initiativesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Initiative cards will be dynamically inserted here -->
-                </div>
-                
-                <!-- Load More -->
-                <div id="loadMoreContainer" class="flex justify-center mt-8" style="display: none;">
-                    <button id="loadMoreBtn" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
-                        <i data-lucide="plus" class="mr-2 h-4 w-4"></i> Load More
-                    </button>
-                </div>
-            </div>
-        </section>
+            <!-- Filters -->
+            <div class="flex flex-wrap gap-4 justify-center items-end">
+              <div class="flex flex-col space-y-2">
+                <label for="categoryFilter" class="text-sm font-medium"
+                  >Category</label
+                >
+                <select
+                  id="categoryFilter"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <option value="">All Categories</option>
+                </select>
+              </div>
 
-        <!-- About Section -->
-        <section class="bg-muted/50 py-16" id="about">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <div class="max-w-3xl mx-auto">
-                    <h2 class="text-3xl font-bold mb-6 text-foreground">About Syria Development Network</h2>
-                    <p class="text-muted-foreground mb-4">The Syria Development Network serves as a comprehensive hub for discovering and connecting with development initiatives across Syria. Our platform aggregates information about various projects, organizations, and initiatives working to support development and reconstruction efforts throughout the country.</p>
-                    <p class="text-muted-foreground">Whether you're looking to collaborate, volunteer, or simply learn about ongoing development work, this platform provides easy access to contact information and project details.</p>
-                </div>
+              <div class="flex flex-col space-y-2">
+                <label for="countryFilter" class="text-sm font-medium"
+                  >Country</label
+                >
+                <select
+                  id="countryFilter"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <option value="">All Countries</option>
+                </select>
+              </div>
+
+              <div class="flex flex-col space-y-2">
+                <label for="cityFilter" class="text-sm font-medium">City</label>
+                <select
+                  id="cityFilter"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <option value="">All Cities</option>
+                </select>
+              </div>
+
+              <button
+                id="clearFilters"
+                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+              >
+                <i data-lucide="x" class="mr-2 h-4 w-4"></i> Clear Filters
+              </button>
             </div>
-        </section>
+          </div>
+
+          <!-- Results Info -->
+          <div class="flex justify-between items-center pt-6 border-t mt-6">
+            <span id="resultsCount" class="text-sm font-medium"
+              >Loading initiatives...</span
+            >
+            <div class="flex items-center space-x-2">
+              <label for="sortSelect" class="text-sm text-muted-foreground"
+                >Sort by:</label
+              >
+              <select
+                id="sortSelect"
+                class="flex h-8 rounded-md border border-input bg-background px-2 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <option value="name">Name (A-Z)</option>
+                <option value="name-desc">Name (Z-A)</option>
+                <option value="category">Category</option>
+                <option value="country">Country</option>
+                <option value="city">City</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Initiatives Grid -->
+      <section class="py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Loading Spinner -->
+          <div
+            id="loadingSpinner"
+            class="flex flex-col items-center justify-center py-12"
+          >
+            <div
+              class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"
+            ></div>
+            <p class="mt-4 text-muted-foreground">Loading initiatives...</p>
+          </div>
+
+          <!-- Error Message -->
+          <div
+            id="errorMessage"
+            class="flex flex-col items-center justify-center py-12"
+            style="display: none"
+          >
+            <i
+              data-lucide="alert-triangle"
+              class="h-12 w-12 text-destructive mb-4"
+            ></i>
+            <p class="text-center text-muted-foreground mb-4">
+              Failed to load initiatives. Please try again later.
+            </p>
+            <button
+              id="retryButton"
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            >
+              Retry
+            </button>
+          </div>
+
+          <!-- No Results -->
+          <div
+            id="noResults"
+            class="flex flex-col items-center justify-center py-12"
+            style="display: none"
+          >
+            <i
+              data-lucide="search"
+              class="h-12 w-12 text-muted-foreground mb-4"
+            ></i>
+            <h3 class="text-lg font-semibold mb-2">No initiatives found</h3>
+            <p class="text-muted-foreground">
+              Try adjusting your search terms or filters.
+            </p>
+          </div>
+
+          <!-- Initiatives Grid -->
+          <div
+            id="initiativesGrid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            <!-- Initiative cards will be dynamically inserted here -->
+          </div>
+
+          <!-- Load More -->
+          <div
+            id="loadMoreContainer"
+            class="flex justify-center mt-8"
+            style="display: none"
+          >
+            <button
+              id="loadMoreBtn"
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            >
+              <i data-lucide="plus" class="mr-2 h-4 w-4"></i> Load More
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="bg-muted/50 py-16" id="about">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-foreground">
+              About Syria Development Network
+            </h2>
+            <p class="text-muted-foreground mb-4">
+              The Syria Development Network serves as a comprehensive hub for
+              discovering and connecting with development initiatives across
+              Syria. Our platform aggregates information about various projects,
+              organizations, and initiatives working to support development and
+              reconstruction efforts throughout the country.
+            </p>
+            <p class="text-muted-foreground">
+              Whether you're looking to collaborate, volunteer, or simply learn
+              about ongoing development work, this platform provides easy access
+              to contact information and project details.
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Footer -->
     <footer class="bg-muted/50 text-foreground" id="contact">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                <div>
-                    <h3 class="text-lg font-semibold mb-4 text-primary">Syria Development Network</h3>
-                    <p class="text-muted-foreground">Connecting development initiatives across Syria</p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 text-primary">Contact</h4>
-                    <p class="text-muted-foreground">For questions or to add your initiative to this platform, please contact us.</p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 text-primary">Data Source</h4>
-                    <p class="text-muted-foreground">Initiative data is sourced from our comprehensive database and is regularly updated.</p>
-                </div>
-            </div>
-            <div class="border-t border-border pt-8 text-center">
-                <p class="text-muted-foreground">&copy; 2025 Syria Development Network. All rights reserved.</p>
-            </div>
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div>
+            <h3 class="text-lg font-semibold mb-4 text-primary">
+              Syria Development Network
+            </h3>
+            <p class="text-muted-foreground">
+              Connecting development initiatives across Syria
+            </p>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4 text-primary">Contact</h4>
+            <p class="text-muted-foreground">
+              For questions or to add your initiative to this platform, please
+              contact us.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4 text-primary">Data Source</h4>
+            <p class="text-muted-foreground">
+              Initiative data is sourced from our comprehensive database and is
+              regularly updated.
+            </p>
+          </div>
         </div>
+        <div class="border-t border-border pt-8 text-center">
+          <p class="text-muted-foreground">
+            &copy; 2025 Syria Development Network. All rights reserved.
+          </p>
+        </div>
+      </div>
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" class="fixed bottom-6 right-6 z-50 h-10 w-10 rounded-full bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 transition-colors" style="display: none;">
-        <i data-lucide="arrow-up" class="h-5 w-5 mx-auto"></i>
+    <button
+      id="backToTop"
+      class="fixed bottom-6 right-6 z-50 h-10 w-10 rounded-full bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 transition-colors"
+      style="display: none"
+    >
+      <i data-lucide="arrow-up" class="h-5 w-5 mx-auto"></i>
     </button>
 
     <!-- Configuration -->
     <script src="config.js"></script>
-    
+
     <!-- Main JavaScript -->
     <script src="script.js"></script>
-    
+
     <!-- Initialize Lucide Icons -->
     <script>
-        // Initialize Lucide icons when the page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.lucide) {
-                window.lucide.createIcons();
-            }
-            // Hamburger menu logic
-            const menuToggle = document.getElementById('menuToggle');
-            const mobileNav = document.getElementById('mobileNav');
-            const menuClose = document.getElementById('menuClose');
-            if (menuToggle && mobileNav) {
-                menuToggle.addEventListener('click', function() {
-                    mobileNav.classList.remove('hidden');
-                    if (window.lucide) window.lucide.createIcons();
-                });
-            }
-            if (menuClose && mobileNav) {
-                menuClose.addEventListener('click', function() {
-                    mobileNav.classList.add('hidden');
-                });
-            }
-        });
+      // Initialize Lucide icons when the page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+        // Hamburger menu logic
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileNav = document.getElementById("mobileNav");
+        const menuClose = document.getElementById("menuClose");
+        if (menuToggle && mobileNav) {
+          menuToggle.addEventListener("click", function () {
+            mobileNav.classList.remove("hidden");
+            if (window.lucide) window.lucide.createIcons();
+          });
+        }
+        if (menuClose && mobileNav) {
+          menuClose.addEventListener("click", function () {
+            mobileNav.classList.add("hidden");
+          });
+        }
+      });
     </script>
-</body>
-</html> 
+  </body>
+</html>
