@@ -104,6 +104,7 @@ class SyriaDevelopmentNetwork {
             if (cachedData) {
                 this.initiatives = cachedData;
                 this.setupFilters();
+                this.clearAllFilters();
                 this.displayInitiatives();
                 return;
             }
@@ -117,6 +118,7 @@ class SyriaDevelopmentNetwork {
             
             // Setup filters and display
             this.setupFilters();
+            this.clearAllFilters();
             this.displayInitiatives();
             
         } catch (error) {
@@ -552,6 +554,21 @@ class SyriaDevelopmentNetwork {
         this.elements.countryFilter.value = '';
         this.elements.cityFilter.value = '';
         this.applyFilters();
+    }
+    
+    // Clear all filters and search (used on initial load)
+    clearAllFilters() {
+        this.elements.searchInput.value = '';
+        this.elements.categoryFilter.value = '';
+        this.elements.countryFilter.value = '';
+        this.elements.cityFilter.value = '';
+        this.elements.sortSelect.value = 'name';
+        this.elements.clearSearch.style.display = 'none';
+        this.currentPage = 1;
+        
+        // Set filtered initiatives to all initiatives and apply sorting
+        this.filteredInitiatives = [...this.initiatives];
+        this.applySorting();
     }
     
     // Show loading state
